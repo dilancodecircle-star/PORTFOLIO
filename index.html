@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilan Sampath | Academic Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0f172a; /* Dark Navy Background */
+    color: #e2e8f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Layout Container */
+.container {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(15px); /* Glass Effect */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 250px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo h2 {
+    color: #38bdf8; /* Cyan accent */
+    margin-bottom: 50px;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.tab-link {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tab-link:hover, .tab-link.active {
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: 600;
+    transform: translateX(5px);
+}
+
+/* Main Content Area */
+.content {
+    flex: 1;
+    padding: 60px;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Tab Logic */
+.tab-content {
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.5s ease;
+}
+
+.active-content {
+    display: block; /* Show active */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography & Components */
+h1 { font-size: 3.5rem; color: #fff; margin-bottom: 10px; }
+h2 { font-size: 2rem; color: #38bdf8; margin-bottom: 30px; border-bottom: 2px solid rgba(56, 189, 248, 0.2); padding-bottom: 10px; display: inline-block;}
+h3 { color: #e2e8f0; margin-bottom: 10px; }
+p { color: #94a3b8; line-height: 1.6; }
+
+/* Hero Section */
+.hero { text-align: center; margin-top: 40px; }
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #38bdf8;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+.subtitle { font-size: 1.2rem; margin-bottom: 20px; color: #38bdf8; }
+.bio-snippet { max-width: 600px; margin: 0 auto 40px auto; }
+
+/* Buttons */
+.buttons { display: flex; gap: 20px; justify-content: center; }
+.btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+.btn.primary { background: #38bdf8; color: #0f172a; font-weight: bold; }
+.btn.secondary { background: transparent; border: 2px solid #38bdf8; color: #38bdf8; }
+.btn:hover { transform: scale(1.05); }
+
+/* Grids */
+.about-grid, .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card, .project-card, .research-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s;
+}
+.card:hover, .project-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.06); }
+
+/* Research & Projects Specifics */
+.research-item { margin-bottom: 20px; }
+.tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.card-header i { font-size: 2rem; color: #38bdf8; margin-bottom: 15px; }
+
+/* Contact Form */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+}
+.contact-form button { width: 100%; }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container { flex-direction: column; height: 100%; width: 100%; border-radius: 0; }
+    .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 10px; }
+    .sidebar ul { display: flex; width: 100%; justify-content: space-around; }
+    .tab-link span { display: none; } /* Hide text on mobile tabs if needed */
+    .contact-wrapper { grid-template-columns: 1fr; }
+}
+    </style>
+    <script>
+        function openTab(evt, tabName) {
+    // 1. Get all elements with class="tab-content" and hide them
+    var tabContent = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+        tabContent[i].classList.remove("active-content");
+    }
+
+    // 2. Get all elements with class="tab-link" and remove the class "active"
+    var tabLinks = document.getElementsByClassName("tab-link");
+    for (var i = 0; i < tabLinks.length; i++) {
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    // 3. Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active-content");
+    
+    // Add active class to the clicked list item (if event exists)
+    if(evt) {
+        evt.currentTarget.className += " active";
+    }
+}
+
+// Set default tab to open on load
+document.addEventListener("DOMContentLoaded", function() {
+    // Open 'home' by default
+    document.querySelector('.tab-link.active').click();
+});
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>DS<span>.</span></h2>
+            </div>
+            <ul>
+                <li class="tab-link active" onclick="openTab(event, 'home')"><i class="fas fa-home"></i> Home</li>
+                <li class="tab-link" onclick="openTab(event, 'about')"><i class="fas fa-user"></i> About Me</li>
+                <li class="tab-link" onclick="openTab(event, 'research')"><i class="fas fa-book-open"></i> Research</li>
+                <li class="tab-link" onclick="openTab(event, 'projects')"><i class="fas fa-code"></i> Projects</li>
+                <li class="tab-link" onclick="openTab(event, 'contact')"><i class="fas fa-envelope"></i> Contact</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+              
+            <!--tab image -->
+
+
+            <div id="home" class="tab-content active-content">
+                <div class="hero">
+                    <div class="profile-img-container">
+                        <img src="C:\Users\Dilan\OneDrive\Desktop\Web sites\proto profile web page\WhatsApp Image 2026-01-27 at 7.36.59 PM.jpeg" class="profile-img">
+                    </div>
+                    <h1>Dilan Sampath</h1>
+                    <p class="subtitle">IT Undergraduate | University of Moratuwa</p>
+                    <p class="bio-snippet">Aspiring researcher and software engineer specializing in algorithmic solutions and systems design.</p>
+                    <div class="buttons">
+                        <button class="btn primary" onclick="openTab(event, 'projects')">View My Work</button>
+                        <button class="btn secondary" onclick="openTab(event, 'contact')">Get in Touch</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- tab about me-->
+
+
+            <div id="about" class="tab-content">
+                <h2>About Me</h2>
+                <div class="about-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <p><strong>B.Sc. in Information Technology</strong><br>University of Moratuwa (Reading)</p>
+                        <p>Focusing on core computing principles, mathematics, and software engineering.</p>
+                    </div>
+
+
+                    <div class="card">
+                        <h3><i class="fas fa-graduation-cap"></i> A/L Qulifications</h3>
+                        <p><strong>2024 A/L Matara district</strong><br><b>In Common Subject Stream</b> </p>
+                        <p><table  >
+                            <tr> <th>Subject</th>
+                               
+                                
+                                 
+                            </tr>
+                              
+                           </table></p>
+                           
+                           <p>C.maths :- A</p>
+                           <p>Physics :- A</p>
+                           <p>ICT     :- A</p>
+                           <P>z-score : </P>
+                    </div>
+
+
+
+
+                    <div class="card">
+                        <h3><i class="fas fa-laptop-code"></i> Technical Skills</h3>
+                        <ul class="skill-list">
+                            <li>Java , Python & C programming</li>
+                            <li>Data Structures & Algorithms</li>
+                            <li>Web Technologies (HTML/CSS/JS)</li>
+                            <li>Database Management</li>
+                            <li>Fundemental of Mathematics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab research-->
+
+            <div id="research" class="tab-content">
+                <h2>Research Interests</h2>
+                <p class="section-intro">Exploring the intersection of advanced algorithms and real-world application.</p>
+                
+                <div class="research-item">
+                    <h3>Computational Efficiency in Legacy Systems  (incompleted)</h3>
+                    <p>Investigating methods to optimize C-based legacy algorithms for modern hardware architectures.</p>
+                    <span class="tag">Algorithms</span> <span class="tag">C Language</span>
+                </div>
+
+                <div class="research-item">
+                    <h3>Automated Event Management Systems (incompleted)</h3>
+                    <p>A study on user-centric design patterns for large-scale university event coordination platforms.</p>
+                    <span class="tag">HCI</span> <span class="tag">Systems Design</span>
+                </div>
+            </div>
+
+
+            <!-- tab projects -->
+
+            <div id="projects" class="tab-content">
+                <h2>Featured Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="card-header">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>Algorithmic Toolbox (Incompleted)</h3>
+                        <p>A comprehensive library of optimized graph and sorting algorithms implemented in C and Java for educational use.</p>
+                        <div class="tech-stack">
+                            <span>C</span><span>Java</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="card-header">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>UniEvent Manager  (Incompleted)</h3>
+                        <p>A web-based platform designed to streamline talent show scheduling and resource allocation for university faculties.</p>
+                        <div class="tech-stack">
+                            <span>Web</span><span>Database</span>
+                        </div>
+                    </div>
+
+                     <div class="project-card">
+                        <div class="card-header">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>AutoMetric Analytics  (Incompleted)</h3>
+                        <p>A prototype application analyzing performance metrics for high-end automotive specifications.</p>
+                        <div class="tech-stack">
+                            <span>Data Analysis</span><span>Java</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab contact -->
+
+            <div id="contact" class="tab-content">
+                <h2>Contact Me</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> dilansampath200508@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Matara, Sri Lanka</p>
+                        <p><i class="fab fa-linkedin"></i> </p>
+                        <p><i class="fab fa-github"></i> </p>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="btn primary">Not Available Now</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
